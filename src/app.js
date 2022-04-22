@@ -9,8 +9,15 @@ app.get("/games/coin-flip", (req, res) => {
         })
     }
 
+    if (!req.query.bet) {
+        return res.send({
+            error: "Please Choose an amount to bet!",
+        })
+    }
+
     let pCoin = req.query.pCoin;
-    res.send(showResult(pCoin));
+    let bet = req.query.bet;
+    res.send(showResult(pCoin, bet));
 });
 
 let portNum = 4000;
